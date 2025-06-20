@@ -1,14 +1,15 @@
-package com.controller.user;
+package com.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
-public class BookingController {
-    @GetMapping("/booking")
-    public String home() {
-        return "user/booking";
+@RequestMapping("/admin")
+public class RoomsController {
+
+    @GetMapping("/rooms")
+    public String rooms() {
+        return "admin/rooms";
     }
 }

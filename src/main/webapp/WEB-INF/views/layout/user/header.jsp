@@ -1,119 +1,67 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <!DOCTYPE html>
-    <html lang="vi">
+    <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <title>DavidSuoi Hotel</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Danh sách phòng</title>
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap"
-            rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous" />
+        <!-- Google Fonts for 'Playfair Display' and 'Open Sans' -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+            rel="stylesheet" />
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: 'Open Sans', sans-serif;
-                background-color: #fdfcf7;
-                color: #222;
-            }
-
             header {
-                background: linear-gradient(135deg, #1b5e20, #2e7d32);
-                /* Gucci xanh đậm */
-                padding: 3rem 2rem;
-                text-align: center;
-                border-bottom: 4px solid #d4af37;
-                /* Gold line */
+                background-color: #1b5e20;
+                /* Gucci Green */
                 color: white;
             }
 
-            header h1 {
-                font-family: 'Playfair Display', serif;
-                font-size: 3rem;
-                letter-spacing: 2px;
-                margin-bottom: 0.5rem;
+            header a {
+                color: white !important;
+                transition: color 0.2s ease;
             }
 
-            header p {
-                font-size: 1.2rem;
-                color: #f1f8e9;
+            header a:hover {
+                color: #d4af37 !important;
+                /* Gucci Gold */
             }
 
-            nav {
-                background: #388e3c;
-                /* xanh nhạt hơn */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            .btn-gucci {
+                background: linear-gradient(to right, #1b5e20, #b71c1c);
+                /* Gucci green to red */
+                color: white;
+                border: none;
+                padding: 0.75rem 2rem;
+                border-radius: 8px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                transition: background 0.3s ease, transform 0.2s ease;
             }
 
-            .nav-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: center;
-                padding: 1rem 2rem;
-                flex-wrap: wrap;
-            }
-
-            .nav-container a {
-                color: #fff;
-                text-decoration: none;
-                margin: 0 1.5rem;
-                font-size: 1.1rem;
-                font-weight: 600;
-                position: relative;
-                transition: all 0.3s ease;
-            }
-
-            .nav-container a::after {
-                content: '';
-                position: absolute;
-                bottom: -6px;
-                left: 50%;
-                transform: translateX(-50%);
-                height: 2px;
-                width: 0;
-                background: #f9d342;
-                /* vàng ánh kim */
-                transition: width 0.3s ease;
-            }
-
-            .nav-container a:hover::after {
-                width: 100%;
-            }
-
-            .nav-container a:hover {
-                color: #f9d342;
-            }
-
-            @media (max-width: 768px) {
-                .nav-container {
-                    justify-content: center;
-                    padding: 1rem;
-                }
-
-                .nav-container a {
-                    margin: 0.5rem 1rem;
-                }
+            .btn-gucci:hover {
+                background: linear-gradient(to right, #388e3c, #c62828);
+                transform: translateY(-2px);
             }
         </style>
     </head>
 
     <body>
-        <header>
-            <h1>DavidSuoi - Hotel</h1>
-        </header>
-
-        <nav>
-            <div class="nav-container">
-                <a href="/user/home">Trang chủ</a>
-                <a href="/user/bookings">Đặt phòng</a>
-                <a href="/user/history">Lịch sử</a>
+        <!-- Header Section -->
+        <!-- This part would typically be in your /WEB-INF/views/layout/user/header.jsp -->
+        <header class="bg-light py-3 shadow-sm">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <a href="/user/home" class="text-success text-decoration-none fs-4 fw-bold">Hotel Booking</a>
+                <nav class="d-flex flex-wrap gap-3">
+                    <a href="/user/home" class="text-dark me-3 text-decoration-none fw-semibold">Trang chủ</a>
+                    <a href="/user/rooms" class="text-dark me-3 text-decoration-none fw-semibold">Phòng</a>
+                    <a href="/user/contact" class="text-dark text-decoration-none fw-semibold">Liên hệ</a>
+                    <a href="/user/booking" class="text-dark text-decoration-none fw-semibold">Bookings</a>
+                </nav>
             </div>
-        </nav>
+        </header>

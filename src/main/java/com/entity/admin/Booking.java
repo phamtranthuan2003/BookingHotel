@@ -2,7 +2,7 @@ package com.entity.admin;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.entity.user.User;
+import com.entity.user.Customer;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Customer user;
 
     @ManyToOne
     @JoinColumn(name = "room_id")

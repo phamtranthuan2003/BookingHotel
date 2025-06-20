@@ -1,0 +1,51 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:include page="/WEB-INF/views/layout/admin/header.jsp" />
+<div class="main-content">
+    <h4><i class="bi bi-people"></i> Quản lý người dùng</h4>
+
+    <div class="text-end mb-3">
+        <a href="/admin/user/add" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Thêm người dùng
+        </a>
+    </div>
+    <!-- Thông báo thành công nếu có -->
+    <div class="alert alert-success" role="alert">
+        <!-- Nội dung thông báo nếu cần -->
+    </div>
+
+    <!-- Nút thêm người dùng -->
+
+    <!-- Bảng danh sách người dùng -->
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center">
+            <thead class="table-success">
+                <tr>
+                    <th>#</th>
+                    <th>Tên người dùng</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Nguyễn Văn A</td>
+                    <td>nguyenvana@gmail.com</td>
+                    <td>0912345678</td>
+                    <td>Khách hàng</td>
+                    <td><span class="badge bg-success">Hoạt động</span></td>
+                    <td>
+                        <a href="/admin/user/edit/1" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                        <a href="/admin/user/delete/1" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>
