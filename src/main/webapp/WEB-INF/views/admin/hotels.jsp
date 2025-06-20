@@ -16,7 +16,7 @@
     </c:if>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-hover align-middle bg-white shadow-sm">
+        <table class="table table-bordered table-hover align-middle bg-white shadow-sm text-center">
             <thead class="table-success">
                 <tr>
                     <th>#</th>

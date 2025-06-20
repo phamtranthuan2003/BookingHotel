@@ -24,24 +24,29 @@
                     <th>Tên người dùng</th>
                     <th>Email</th>
                     <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
                     <th>Vai trò</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Nguyễn Văn A</td>
-                    <td>nguyenvana@gmail.com</td>
-                    <td>0912345678</td>
-                    <td>Khách hàng</td>
-                    <td><span class="badge bg-success">Hoạt động</span></td>
-                    <td>
-                        <a href="/admin/user/edit/1" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
-                        <a href="/admin/user/delete/1" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')"><i class="bi bi-trash"></i></a>
-                    </td>
-                </tr>
+                <c:out value="${customers}" />
+                <c:forEach var="customer" items="${customers}">
+                    <tr>
+                        <td>${customer.id}</td>
+                        <td>${customer.name}</td>
+                        <td>${customer.email}</td>
+                        <td>${customer.phone}</td>
+                        <td>${customer.address}</td>
+                        <td>${customer.role.name}</td>
+                        <td><span class="badge bg-success">Hoạt động</span></td>
+                        <td>
+                            <a href="/admin/user/edit/${customer.id}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="/admin/user/delete/${customer.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>

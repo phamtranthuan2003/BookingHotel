@@ -91,7 +91,7 @@
 
                 .nav-link {
                     color: #ecf0f1;
-                    padding: 12px 20px;
+                    padding: 25px 20px;
                     font-size: 15px;
                     display: flex;
                     align-items: center;
