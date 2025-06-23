@@ -1,23 +1,132 @@
 package com.controller.admin;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.service.CustomerService;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+
 import java.util.List;
+
+import com.entity.common.Role;
 import com.entity.user.Customer;
+import com.repository.CustomerRepository;
+import com.repository.RoleRepository;
+import com.service.CustomerService;
+
 @Controller
 @RequestMapping("/admin")
 public class CustomersController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
     @GetMapping("/customers")
-    public String customers(Model model) {
+    public String listCustomers(Model model) {
         List<Customer> customers = customerService.findAll();
         model.addAttribute("customers", customers);
-        return "admin/customers";
+        return "admin/customer/customersList";
+    }
+
+    @GetMapping("/addCustomer")
+    public String showAddCustomerForm(Model model) {
+        List<Role> roles = roleRepository.findAll();
+        System.out.println("roles = " + roles);
+        model.addAttribute("roles", roles);
+        return "admin/customer/addCustomer";
+    }
+
+    @PostMapping("/addCustomer")
+    public String signupSubmit(@RequestParam String name,
+                               @RequestParam String email,
+                               @RequestParam String password,
+                               @RequestParam String rePassword,
+                               @RequestParam String phone,
+                               @RequestParam String address,
+                               @RequestParam Long roleId,
+                               Model model) {
+
+        if (customerRepository.findByEmail(email) != null) {
+            model.addAttribute("Error", "Email đã được sử dụng");
+            return "admin/customer/addCustomer";
+        }
+
+        if (!password.equals(rePassword)) {
+            model.addAttribute("Error", "Mật khẩu không khớp");
+            return "admin/customer/addCustomer";
+        }
+
+        Role role = new Role();
+        role.setId(roleId);
+
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setEmail(email);
+        customer.setPassword(password);
+        customer.setPhone(phone);
+        customer.setAddress(address);
+        customer.setRole(role);
+
+        customerRepository.save(customer);
+        return "redirect:/admin/customer/customers";
+    }
+    @GetMapping("/editCustomer/{id}")
+    public String showEditCustomerForm(@PathVariable Long id, Model model) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            model.addAttribute("Error", "Khách hàng không tồn tại");
+            return "admin/customer/customersList";
+        }
+        List<Role> roles = roleRepository.findAll();
+        model.addAttribute("customer", customer);
+        model.addAttribute("roles", roles);
+        return "admin/customer/editCustomer";
+    }
+    @PostMapping("/editCustomer/{id}")
+    public String editCustomerSubmit(@PathVariable Long id,
+                                     @RequestParam String name,
+                                     @RequestParam String email,
+                                     @RequestParam String phone,
+                                     @RequestParam String address,
+                                     @RequestParam Long roleId,
+                                     Model model) {
+
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            model.addAttribute("Error", "Khách hàng không tồn tại");
+            return "admin/customer/customersList";
+        }
+
+        if (customerRepository.findByEmail(email) != null && !customer.getEmail().equals(email)) {
+            model.addAttribute("Error", "Email đã được sử dụng");
+            return "admin/customer/editCustomer/{id}";
+        }
+
+        Role role = new Role();
+        role.setId(roleId);
+
+        customer.setName(name);
+        customer.setEmail(email);
+        customer.setPhone(phone);
+        customer.setAddress(address);
+        customer.setRole(role);
+
+        customerRepository.save(customer);
+        return "redirect:/admin/customer/customers";
+    }
+    @GetMapping("/deleteCustomer/{id}")
+    public String deleteCustomer(@PathVariable Long id, Model model) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            model.addAttribute("Error", "Khách hàng không tồn tại");
+            return "admin/customersList";
+        }
+        customerRepository.delete(customer);
+        return "redirect:/admin/customer/customers";
     }
 }

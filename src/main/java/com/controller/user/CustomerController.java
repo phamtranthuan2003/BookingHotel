@@ -50,7 +50,6 @@ public class CustomerController {
         customer.setPhone(phone);
         customer.setAddress(address);
 
-        // Gán Role mặc định là USER (id = 2)
         Role userRole = new Role();
         userRole.setId(2L);
         customer.setRole(userRole);
@@ -79,7 +78,7 @@ public class CustomerController {
         session.setAttribute("user", customer);
 
         if (customer.getRole().getName().equalsIgnoreCase("ADMIN")) {
-            return "redirect:/admin/home";
+            return "redirect:/admin/homes";
         } else {
             return "redirect:/user/home";
         }

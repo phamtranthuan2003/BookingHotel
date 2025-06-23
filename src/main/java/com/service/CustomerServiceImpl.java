@@ -1,11 +1,9 @@
-package com.service.impl;
+package com.service;
 
 import com.entity.user.Customer;
 import com.repository.CustomerRepository;
-import com.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

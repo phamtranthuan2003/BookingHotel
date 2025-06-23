@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <jsp:include page="/WEB-INF/views/layout/admin/header.jsp" />
 <div class="main-content">
     <h4><i class="bi bi-people"></i> Quản lý người dùng</h4>
-
+    <!-- Nút thêm người dùng -->
     <div class="text-end mb-3">
-        <a href="/admin/user/add" class="btn btn-success">
+        <a href="/admin/addCustomer" class="btn btn-success">
             <i class="bi bi-plus-circle"></i> Thêm người dùng
         </a>
     </div>
@@ -12,8 +14,6 @@
     <div class="alert alert-success" role="alert">
         <!-- Nội dung thông báo nếu cần -->
     </div>
-
-    <!-- Nút thêm người dùng -->
 
     <!-- Bảng danh sách người dùng -->
     <div class="table-responsive">
@@ -31,7 +31,6 @@
                 </tr>
             </thead>
             <tbody>
-                <c:out value="${customers}" />
                 <c:forEach var="customer" items="${customers}">
                     <tr>
                         <td>${customer.id}</td>
@@ -42,8 +41,8 @@
                         <td>${customer.role.name}</td>
                         <td><span class="badge bg-success">Hoạt động</span></td>
                         <td>
-                            <a href="/admin/user/edit/${customer.id}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="/admin/user/delete/${customer.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')"><i class="bi bi-trash"></i></a>
+                            <a href="/admin/editCustomer/${customer.id}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="/admin/deleteCustomer/${customer.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?')"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
