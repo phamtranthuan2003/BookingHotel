@@ -26,6 +26,7 @@ public class CustomersController {
     @Autowired
     private RoleRepository roleRepository;
 
+    // Danh sách khách hàng
     @GetMapping("/customers")
     public String listCustomers(Model model) {
         List<Customer> customers = customerService.findAll();
@@ -33,14 +34,15 @@ public class CustomersController {
         return "admin/customer/customersList";
     }
 
+    // Hiển thị form thêm
     @GetMapping("/addCustomer")
     public String showAddCustomerForm(Model model) {
         List<Role> roles = roleRepository.findAll();
-        System.out.println("roles = " + roles);
         model.addAttribute("roles", roles);
         return "admin/customer/addCustomer";
     }
 
+    // Xử lý thêm mới
     @PostMapping("/addCustomer")
     public String signupSubmit(@RequestParam String name,
                                @RequestParam String email,
@@ -53,11 +55,13 @@ public class CustomersController {
 
         if (customerRepository.findByEmail(email) != null) {
             model.addAttribute("Error", "Email đã được sử dụng");
+            model.addAttribute("roles", roleRepository.findAll());
             return "admin/customer/addCustomer";
         }
 
         if (!password.equals(rePassword)) {
             model.addAttribute("Error", "Mật khẩu không khớp");
+            model.addAttribute("roles", roleRepository.findAll());
             return "admin/customer/addCustomer";
         }
 
@@ -73,20 +77,24 @@ public class CustomersController {
         customer.setRole(role);
 
         customerRepository.save(customer);
-        return "redirect:/admin/customer/customers";
+        return "redirect:/admin/customers";
     }
+
+    // Hiển thị form sửa
     @GetMapping("/editCustomer/{id}")
     public String showEditCustomerForm(@PathVariable Long id, Model model) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             model.addAttribute("Error", "Khách hàng không tồn tại");
-            return "admin/customer/customersList";
+            return "redirect:/admin/customers";
         }
         List<Role> roles = roleRepository.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("roles", roles);
         return "admin/customer/editCustomer";
     }
+
+    // Xử lý cập nhật
     @PostMapping("/editCustomer/{id}")
     public String editCustomerSubmit(@PathVariable Long id,
                                      @RequestParam String name,
@@ -99,12 +107,15 @@ public class CustomersController {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             model.addAttribute("Error", "Khách hàng không tồn tại");
-            return "admin/customer/customersList";
+            return "redirect:/admin/customers";
         }
 
-        if (customerRepository.findByEmail(email) != null && !customer.getEmail().equals(email)) {
+        Customer existing = customerRepository.findByEmail(email);
+        if (existing != null && !existing.getId().equals(customer.getId())) {
             model.addAttribute("Error", "Email đã được sử dụng");
-            return "admin/customer/editCustomer/{id}";
+            model.addAttribute("customer", customer);
+            model.addAttribute("roles", roleRepository.findAll());
+            return "admin/customer/editCustomer";
         }
 
         Role role = new Role();
@@ -117,16 +128,18 @@ public class CustomersController {
         customer.setRole(role);
 
         customerRepository.save(customer);
-        return "redirect:/admin/customer/customers";
+        return "redirect:/admin/customers";
     }
+
+    // Xóa khách hàng
     @GetMapping("/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable Long id, Model model) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             model.addAttribute("Error", "Khách hàng không tồn tại");
-            return "admin/customersList";
+            return "redirect:/admin/customers";
         }
         customerRepository.delete(customer);
-        return "redirect:/admin/customer/customers";
+        return "redirect:/admin/customers";
     }
 }

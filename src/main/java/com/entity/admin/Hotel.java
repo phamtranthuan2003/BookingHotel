@@ -1,11 +1,16 @@
 package com.entity.admin;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "hotels")
@@ -20,7 +25,7 @@ public class Hotel {
     private String description;
     private Float rating;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    @JsonManagedReference // Ngăn vòng lặp JSON
     private List<Room> rooms;
-
 }

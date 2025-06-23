@@ -18,7 +18,6 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
     
     @GetMapping("/signup")
     public String signup() {

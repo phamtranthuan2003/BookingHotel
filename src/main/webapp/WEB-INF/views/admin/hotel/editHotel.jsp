@@ -20,10 +20,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <div class="card p-4">
-                <h3 class="mb-4 text-center text-primary">Thêm khách sạn mới</h3>
+                <h3 class="mb-4 text-center text-primary">Sửa khách sạn</h3>
 
                 <!-- HTML thuần -->
-                <form method="POST" action="/admin/addHotel">
+                <form method="POST" action="${pageContext.request.contextPath}/admin/editHotel/${hotel.id}">
                     <!-- Tên khách sạn -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên khách sạn</label>
@@ -50,7 +50,7 @@
 
                     <!-- Nút -->
                     <div class="d-flex justify-content-between mt-4">
-                        <button type="submit" class="btn btn-success">💾 Thêm</button>
+                        <button type="submit" class="btn btn-success">💾 Sửa</button>
                         <a href="/admin/hotels" class="btn btn-outline-secondary">⬅ Quay lại</a>
                     </div>
                 </form>

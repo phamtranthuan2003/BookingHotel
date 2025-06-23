@@ -1,11 +1,16 @@
 package com.entity.admin;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "rooms")
@@ -16,14 +21,13 @@ public class Room {
     private Long id;
 
     private String roomNumber;
-    private String type; // Single, Double, Suite
+    private String type;
     private Integer capacity;
     private BigDecimal price;
-    private Boolean isAvailable;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
+    @JsonBackReference // Ngăn lặp khi serialize JSON
     private Hotel hotel;
-
-    // Getters/setters nếu không dùng Lombok
 }
