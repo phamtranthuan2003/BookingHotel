@@ -18,7 +18,7 @@
             <select name="customerId" class="form-select" required>
                 <option value="">-- Chọn khách hàng --</option>
                 <c:forEach items="${customers}" var="c">
-                    <option value="${c.id}" ${c.id == booking.user.id ? 'selected' : ''}>
+                    <option value="${c.id}" ${c.id == booking.customer.id ? 'selected' : ''}>
                         ${c.name}
                     </option>
                 </c:forEach>

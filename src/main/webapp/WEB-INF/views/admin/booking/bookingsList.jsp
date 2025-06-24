@@ -35,7 +35,7 @@
                 <c:forEach var="booking" items="${bookings}" varStatus="i">
                     <tr>
                         <td>${i.index + 1}</td>
-                        <td>${booking.user.name}</td>
+                        <td>${booking.customer.name}</td>
                         <td>${booking.room.hotel.name}</td>
                         <td>${booking.room.roomNumber}</td>
                         <td>${booking.checkInFormatted}</td>
@@ -47,7 +47,7 @@
                         <td>
                             <a href="/admin/editBooking/${booking.id}"
                                 class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="/admin/editBooking/${booking.id}" class="btn btn-sm btn-danger"
+                            <a href="/admin/deleteBooking/${booking.id}" class="btn btn-sm btn-danger"
                                 onclick="return confirm('Bạn có chắc chắn muốn xóa?')"><i
                                     class="bi bi-trash"></i></a>
                         </td>

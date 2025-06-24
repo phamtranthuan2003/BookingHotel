@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import com.entity.admin.Hotel;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -19,10 +20,11 @@ public class Review {
     private Integer rating;
     private String comment;
     private LocalDateTime createdAt;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Customer user;
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
@@ -32,4 +34,9 @@ public class Review {
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
+    public String getCreatedAtFormatted() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return createdAt != null ? createdAt.format(formatter) : "";
+    }
+
 }

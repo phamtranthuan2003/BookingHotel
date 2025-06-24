@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.entity.admin.Booking;
 import com.entity.admin.Room;
 import com.entity.user.Customer;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.repository.BookingRepository;
 import com.repository.RoomRepository;
 import com.repository.CustomerRepository;
@@ -36,7 +37,12 @@ public class BookingsController {
         return "admin/booking/bookingsList";
     }
     @GetMapping("/addBooking")
-    public String addBooking() {
+    public String addBooking(Model model) {
+        List<Room> rooms = roomRepository.findAll();
+        List<Customer> customers = customerRepository.findAll();
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("customers", customers);
+        model.addAttribute("booking", new Booking());
         return "admin/booking/addBooking";
     }
     @PostMapping("/addBooking")
@@ -55,7 +61,7 @@ public class BookingsController {
         }
         Booking booking = new Booking();
         booking.setRoom(room);
-        booking.setUser(customer);
+        booking.setCustomer(customer);
         booking.setCheckIn(LocalDate.parse(checkIn));
         booking.setCheckOut(LocalDate.parse(checkOut));
         booking.setStatus(status);
@@ -99,13 +105,23 @@ public class BookingsController {
             return "admin/booking/editBooking";
         }
         booking.setRoom(room);
-        booking.setUser(customer);
+        booking.setCustomer(customer);
         booking.setCheckIn(LocalDate.parse(checkIn));
         booking.setCheckOut(LocalDate.parse(checkOut));
         booking.setStatus(status);
         booking.setNote(note);
 
         bookingRepository.save(booking);
+        return "redirect:/admin/bookings";
+    }
+    @GetMapping("/deleteBooking/{id}")
+    public String deleteBooking(@PathVariable Long id, Model model) {
+        Booking booking = bookingRepository.findById(id).orElse(null);
+        if (booking == null) {
+            model.addAttribute("error", "Đặt phòng không tồn tại");
+            return "admin/booking/bookingsList";
+        }
+        bookingRepository.delete(booking);
         return "redirect:/admin/bookings";
     }
 }
