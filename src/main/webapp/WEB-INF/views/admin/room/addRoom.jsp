@@ -61,7 +61,13 @@
                                 </c:forEach>
                             </select>
                         </div>
-
+                        <select
+                            name="status" class="form-select mb-3" required>
+                            <option value="">-- Chọn trạng thái --</option>
+                            <option value="AVAILABLE">Còn trống</option>
+                            <option value="BOOKED">Đã đặt</option>
+                            <option value="MAINTENANCE">Bảo trì</option>
+                        </select>
                         <!-- Mô tả -->
                         <div class="mb-3">
                             <label class="form-label">Mô tả</label>

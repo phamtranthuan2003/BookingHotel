@@ -25,9 +25,10 @@ public class Room {
     private Integer capacity;
     private BigDecimal price;
     private String description;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
-    @JsonBackReference // Ngăn lặp khi serialize JSON
+    @JsonBackReference
     private Hotel hotel;
 }

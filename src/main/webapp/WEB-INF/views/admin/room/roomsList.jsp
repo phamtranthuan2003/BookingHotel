@@ -54,7 +54,20 @@
 
                         <td>${room.capacity} người</td>
                         <td>
-                            <span class="badge bg-secondary">Chưa có trạng thái</span>
+                            <c:choose>
+                                <c:when test="${room.status == 'Còn trống'}">
+                                    <span class="badge bg-success">${room.status}</span>
+                                </c:when>
+                                <c:when test="${room.status == 'Đã đặt'}">
+                                    <span class="badge bg-warning text-dark">${room.status}</span>
+                                </c:when>
+                                <c:when test="${room.status == 'Bảo trì'}">
+                                    <span class="badge bg-danger">${room.status}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge bg-secondary">${room.status}</span>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                         <td>
                             <a href="/admin/editRoom/${room.id}" class="btn btn-sm btn-primary">

@@ -6,6 +6,7 @@ import com.entity.user.Customer;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,8 @@ public class Booking {
     private LocalDate checkIn;
     private LocalDate checkOut;
     private BigDecimal totalPrice;
-    private String status; // PENDING, CONFIRMED, CANCELLED
+    private String status;
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -29,4 +31,11 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+    public String getCheckInFormatted() {
+        return checkIn != null ? checkIn.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
+    }
+    public String getCheckOutFormatted() {
+        return checkOut != null ? checkOut.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
+    }
 }

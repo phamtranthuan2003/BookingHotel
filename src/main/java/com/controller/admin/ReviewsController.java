@@ -10,6 +10,6 @@ public class ReviewsController {
 
     @GetMapping("/reviews")
     public String reviews() {
-        return "admin/reviews";
+        return "admin/review/reviewsList";
     }
 }

@@ -50,6 +50,7 @@ public class RoomsController {
                                 @RequestParam BigDecimal price,
                                 @RequestParam String description,
                                 @RequestParam Long hotelId,
+                                @RequestParam String status,
                                 Model model) {
 
         Hotel hotel = hotelRepository.findById(hotelId).orElse(null);
@@ -65,6 +66,7 @@ public class RoomsController {
         room.setPrice(price);
         room.setDescription(description);
         room.setHotel(hotel);
+        room.setStatus(status);
 
         roomRepository.save(room);
         return "redirect:/admin/rooms";
@@ -90,6 +92,7 @@ public class RoomsController {
                                 @RequestParam BigDecimal price,
                                 @RequestParam String description,
                                 @RequestParam Long hotelId,
+                                @RequestParam String status,
                                 Model model) {
     
             Room room = roomRepository.findById(id).orElse(null);
@@ -110,6 +113,7 @@ public class RoomsController {
             room.setPrice(price);
             room.setDescription(description);
             room.setHotel(hotel);
+            room.setStatus(status);
     
             roomRepository.save(room);
             return "redirect:/admin/rooms";
