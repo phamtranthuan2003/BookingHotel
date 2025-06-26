@@ -1,11 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:include page="/WEB-INF/views/layout/user/header.jsp" />
 
 <style>
     .room-card {
         background: #ffffff;
-        border: 2px solid #154734; /* Xanh rêu */
+        border: 2px solid #154734;
+        /* Xanh rêu */
         border-radius: 15px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
@@ -32,11 +35,13 @@
         font-size: 22px;
         font-weight: bold;
         margin-bottom: 10px;
-        color: #111111; /* Đen than */
+        color: #111111;
+        /* Đen than */
     }
 
     .room-badge {
-        background: #a60000; /* Đỏ rượu */
+        background: #a60000;
+        /* Đỏ rượu */
         color: white;
         padding: 5px 10px;
         font-size: 12px;
@@ -51,7 +56,8 @@
     }
 
     .room-rating {
-        color: #d4af37; /* Vàng kim */
+        color: #d4af37;
+        /* Vàng kim */
         margin-bottom: 10px;
         font-size: 16px;
     }
@@ -62,9 +68,11 @@
         font-weight: bold;
     }
 
-    .btn-book, .btn-detail {
+    .btn-book,
+    .btn-detail {
         display: inline-block;
-        background: #154734; /* Xanh rêu */
+        background: #154734;
+        /* Xanh rêu */
         color: white;
         padding: 8px 16px;
         border-radius: 30px;
@@ -75,7 +83,8 @@
         transition: 0.3s ease;
     }
 
-    .btn-book:hover, .btn-detail:hover {
+    .btn-book:hover,
+    .btn-detail:hover {
         background: #0e3224;
     }
 </style>
@@ -84,65 +93,36 @@
     <h2 class="text-center mb-4" style="color:#154734;">🛏️ Phòng nghỉ tại David Suối Hotel</h2>
 
     <div class="row">
-        <!-- Phòng 1 -->
-        <div class="col-md-4">
-            <div class="room-card">
-                <img src="https://cdn.pixabay.com/photo/2016/11/29/10/07/bedroom-1866708_960_720.jpg" class="room-image" />
-                <div class="room-content">
-                    <div class="d-flex justify-content-between">
-                        <div class="room-title">Phòng Deluxe</div>
-                        <div class="room-badge">🔥 Hot</div>
-                    </div>
-                    <div class="room-rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
-                    <p class="room-desc">Phòng rộng rãi, có ban công hướng biển, nội thất cao cấp.</p>
-                    <div class="room-price">2.000.000 VND/đêm</div>
-                    <div>
-                        <a href="#" class="btn-detail">Xem chi tiết</a>
-                        <a href="#" class="btn-book">Đặt phòng</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <c:forEach var="room" items="${rooms}">
+            <div class="col-md-4">
+                <div class="room-card">
+                    <a href="${pageContext.request.contextPath}/user/roomDetail?id=${room.id}">
+                        <img src="assets/images/banner.png" class="room-image" />
+                    <div class="room-content">
+                    </a>
+                        <div class="d-flex justify-content-between">
+                            <div class="room-title">${room.hotel.name}</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="room-title">${room.roomNumber}</div>
+                            <div class="room-badge">New⭐</div>
+                        </div>
+                        <div class="room-rating">⭐ ⭐ ⭐ ⭐</div>
+                        <p class="room-desc">${room.description}</p>
+                        <div class="room-price">
+                            <fmt:formatNumber value="${room.price}" type="number" groupingUsed="true" /> VND/đêm
+                        </div>
 
-        <!-- Phòng 2 -->
-        <div class="col-md-4">
-            <div class="room-card">
-                <img src="https://cdn.pixabay.com/photo/2017/07/08/01/20/hotel-2484433_960_720.jpg" class="room-image" />
-                <div class="room-content">
-                    <div class="d-flex justify-content-between">
-                        <div class="room-title">Phòng Standard</div>
-                        <div class="room-badge">🆕 New</div>
-                    </div>
-                    <div class="room-rating">⭐ ⭐ ⭐ ⭐</div>
-                    <p class="room-desc">Phòng tiêu chuẩn, đầy đủ tiện nghi, giá hợp lý.</p>
-                    <div class="room-price">1.200.000 VND/đêm</div>
-                    <div>
-                        <a href="#" class="btn-detail">Xem chi tiết</a>
-                        <a href="#" class="btn-book">Đặt phòng</a>
+                        <div>
+                            <a href="${pageContext.request.contextPath}/user/roomDetail?id=${room.id}"
+                                class="btn-detail">Xem chi tiết</a>
+                            <a href="#" class="btn-book">Đặt phòng</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
 
-        <!-- Phòng 3 -->
-        <div class="col-md-4">
-            <div class="room-card">
-                <img src="https://cdn.pixabay.com/photo/2016/03/27/21/16/hotel-room-1285156_960_720.jpg" class="room-image" />
-                <div class="room-content">
-                    <div class="d-flex justify-content-between">
-                        <div class="room-title">Phòng Suite</div>
-                        <div class="room-badge">🌟 VIP</div>
-                    </div>
-                    <div class="room-rating">⭐ ⭐ ⭐ ⭐ ⭐</div>
-                    <p class="room-desc">Không gian sang trọng, phòng khách riêng, bồn tắm thư giãn.</p>
-                    <div class="room-price">3.500.000 VND/đêm</div>
-                    <div>
-                        <a href="#" class="btn-detail">Xem chi tiết</a>
-                        <a href="#" class="btn-book">Đặt phòng</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

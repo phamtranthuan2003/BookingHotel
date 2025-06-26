@@ -15,5 +15,11 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> findAllRooms() {
         return roomRepository.findAll();
     }
+
+    // -----------------------------user-----------------------------
+    @Override
+    public List<Room> getAllRooms() {
+        return roomRepository.findAll();
+    }
 }
 
