@@ -9,6 +9,7 @@
             <tr>
                 <th>Mã đơn</th>
                 <th>Loại phòng</th>
+                <th>Khách sạn</th>
                 <th>Ngày nhận</th>
                 <th>Ngày trả</th>
                 <th>Giá</th>
@@ -19,6 +20,7 @@
             <tr>
                 <td>#BK001</td>
                 <td>Phòng Deluxe</td>
+                <td>Việt Trì Garden</td>
                 <td>20/06/2025</td>
                 <td>23/06/2025</td>
                 <td>6.000.000 VNĐ</td>
@@ -27,6 +29,7 @@
             <tr>
                 <td>#BK002</td>
                 <td>Phòng Executive</td>
+                <td>Việt Trì Garden</td>
                 <td>10/07/2025</td>
                 <td>12/07/2025</td>
                 <td>6.000.000 VNĐ</td>
@@ -35,6 +38,7 @@
             <tr>
                 <td>#BK003</td>
                 <td>Phòng Gia Đình</td>
+                <td>Việt Trì Garden</td>
                 <td>05/08/2025</td>
                 <td>08/08/2025</td>
                 <td>12.000.000 VNĐ</td>
