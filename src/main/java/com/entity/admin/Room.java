@@ -26,6 +26,7 @@ public class Room {
     private BigDecimal price;
     private String description;
     private String status;
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")

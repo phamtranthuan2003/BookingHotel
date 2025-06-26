@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Thêm phòng mới</title>
+    <title>Sửa phòng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         .form-label {
@@ -51,7 +51,11 @@
                             <input type="number" name="capacity" class="form-control" min="1" required
                                 value="${room.capacity}">
                         </div>
-
+                        <div class="mb-3">
+                            <label class="form-label">Hình ảnh</label>
+                            <input type="text" name="imageUrl" class="form-control" required value="${room.imageUrl}"
+                                accept="image/*">
+                        </div>
                         <div class="mb-3">
                             <label class="form-label">Khách sạn</label>
                             <select name="hotelId" class="form-select" required>

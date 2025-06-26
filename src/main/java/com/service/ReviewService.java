@@ -9,5 +9,5 @@ public interface ReviewService {
     void showReviewById(Long id);
     void deleteReviewById(Long id);
     List<Review> findAllReviewsByStatus(String status);
-
+    List<Review> getReviewsByRoomId(Long roomId);
 }

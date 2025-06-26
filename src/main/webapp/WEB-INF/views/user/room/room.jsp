@@ -96,10 +96,10 @@
         <c:forEach var="room" items="${rooms}">
             <div class="col-md-4">
                 <div class="room-card">
-                    <a href="${pageContext.request.contextPath}/user/roomDetail?id=${room.id}">
-                        <img src="assets/images/banner.png" class="room-image" />
-                    <div class="room-content">
+                    <a href="/user/roomDetail/${room.id}">
+                        <img src="${room.imageUrl}" class="room-image" />
                     </a>
+                    <div class="room-content">
                         <div class="d-flex justify-content-between">
                             <div class="room-title">${room.hotel.name}</div>
                         </div>
@@ -114,7 +114,7 @@
                         </div>
 
                         <div>
-                            <a href="${pageContext.request.contextPath}/user/roomDetail?id=${room.id}"
+                            <a href="/user/roomDetail/${room.id}"
                                 class="btn-detail">Xem chi tiết</a>
                             <a href="#" class="btn-book">Đặt phòng</a>
                         </div>

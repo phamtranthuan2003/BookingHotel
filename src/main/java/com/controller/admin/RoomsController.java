@@ -51,6 +51,7 @@ public class RoomsController {
                                 @RequestParam String description,
                                 @RequestParam Long hotelId,
                                 @RequestParam String status,
+                                @RequestParam String imageUrl,
                                 Model model) {
 
         Hotel hotel = hotelRepository.findById(hotelId).orElse(null);
@@ -67,6 +68,7 @@ public class RoomsController {
         room.setDescription(description);
         room.setHotel(hotel);
         room.setStatus(status);
+        room.setImageUrl(imageUrl);
 
         roomRepository.save(room);
         return "redirect:/admin/rooms";
@@ -93,6 +95,7 @@ public class RoomsController {
                                 @RequestParam String description,
                                 @RequestParam Long hotelId,
                                 @RequestParam String status,
+                                @RequestParam String imageUrl,
                                 Model model) {
     
             Room room = roomRepository.findById(id).orElse(null);
@@ -114,6 +117,7 @@ public class RoomsController {
             room.setDescription(description);
             room.setHotel(hotel);
             room.setStatus(status);
+            room.setImageUrl(imageUrl);
     
             roomRepository.save(room);
             return "redirect:/admin/rooms";

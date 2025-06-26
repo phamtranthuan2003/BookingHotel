@@ -50,7 +50,10 @@
                             <label class="form-label">Sức chứa</label>
                             <input type="number" name="capacity" class="form-control" min="1" required>
                         </div>
-
+                        <div class="mb-3">
+                            <label class="form-label">Hình ảnh</label>
+                            <input type="text" name="imageUrl" class="form-control" accept="image/*" required>
+                        </div>
                         <!-- Chọn khách sạn -->
                         <div class="mb-3">
                             <label class="form-label">Khách sạn</label>

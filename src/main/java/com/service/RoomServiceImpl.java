@@ -10,12 +10,15 @@ import java.util.List;
 public class RoomServiceImpl implements RoomService {
     @Autowired
     private RoomRepository roomRepository;
-
+    // -----------------------------admin-----------------------------
     @Override
     public List<Room> findAllRooms() {
         return roomRepository.findAll();
     }
-
+    @Override
+    public Room findRoomById(Long id) {
+        return roomRepository.findById(id).orElse(null);
+    }
     // -----------------------------user-----------------------------
     @Override
     public List<Room> getAllRooms() {

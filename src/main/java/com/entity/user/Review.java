@@ -3,6 +3,8 @@ package com.entity.user;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.entity.admin.Hotel;
+import com.entity.admin.Room;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,8 +29,8 @@ public class Review {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    @JoinColumn(name = "room_id")
+    private Room room;
 
     @PrePersist
     public void prePersist() {
