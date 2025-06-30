@@ -110,7 +110,7 @@ public class CustomersController {
             return "redirect:/admin/customers";
         }
 
-        Customer existing = customerRepository.findByEmail(email);
+        Customer existing = customerRepository.findByEmail(email).orElse(null);
         if (existing != null && !existing.getId().equals(customer.getId())) {
             model.addAttribute("Error", "Email đã được sử dụng");
             model.addAttribute("customer", customer);
