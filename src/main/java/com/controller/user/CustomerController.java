@@ -56,7 +56,7 @@ public class CustomerController {
         customer.setAddress(address);
 
         Role userRole = new Role();
-        userRole.setId(2L); // hoặc lấy từ roleRepository nếu muốn an toàn hơn
+        userRole.setId(2L);
         customer.setRole(userRole);
 
         customerRepository.save(customer);
