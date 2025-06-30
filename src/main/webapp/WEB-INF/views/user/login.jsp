@@ -29,10 +29,11 @@
 
         <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
     </form>
-
-    <p class="mt-3 text-center">
-        Chưa có tài khoản? <a href="/user/signup">Đăng ký</a>
-    </p>
+    <div class="mt-3 text-center">
+        <a href="/user/forgotPassword">Quên mật khẩu?</a>
+        <span class="mx-2">|</span>
+        <a href="/user/signup">Đăng ký</a>
+    </div>
 </div>
 </body>
 </html>

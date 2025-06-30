@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface CustomerService {
     List<Customer> findAll();
+    boolean existsByEmail(String email);
 }
