@@ -8,7 +8,7 @@
 
     <!-- Nút thêm mới -->
     <div class="text-end mb-3">
-        <a href="/admin/hotels/add" class="btn btn-success">
+        <a href="/admin/addHotel" class="btn btn-success">
             <i class="bi bi-plus-circle"></i> Thêm khách sạn
         </a>
     </div>

@@ -53,7 +53,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Hình ảnh</label>
-                            <input type="text" name="imageUrl" class="form-control" required value="${room.imageUrl}"
+                            <input type="file" name="imageUrl" class="form-control" required value="${room.imageUrl}"
                                 accept="image/*">
                         </div>
                         <div class="mb-3">

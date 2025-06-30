@@ -40,5 +40,7 @@ public class Review {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return createdAt != null ? createdAt.format(formatter) : "";
     }
-
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 }
