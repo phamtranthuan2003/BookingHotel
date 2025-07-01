@@ -36,27 +36,12 @@
 
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
-                        <!-- Dropdown user -->
-                        <div class="dropdown">
-                            <a class="text-white text-decoration-none dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                ${sessionScope.user.name}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/user/profile">Trang cá nhân</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item text-danger" href="/logout">Đăng xuất</a></li>
-                            </ul>
-                        </div>
+                        <a href="/user/logout" class="btn btn-outline-light btn-sm text-white">Đăng xuất</a>
                     </c:when>
-
                     <c:otherwise>
                         <a href="/user/login" class="btn btn-outline-light btn-sm">Đăng nhập</a>
                     </c:otherwise>
                 </c:choose>
-
             </nav>
         </div>
     </header>

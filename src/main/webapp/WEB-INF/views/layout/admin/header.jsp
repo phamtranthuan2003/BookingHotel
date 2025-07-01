@@ -13,7 +13,6 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -23,39 +22,25 @@
             <h4>Admin Panel</h4>
             <% String uri=request.getRequestURI(); %>
 
-                <a href="/admin/homes" class="nav-link <%= uri.contains("/admin/homes") ? "active" : "" %>"><i
-                        class="bi bi-speedometer2"></i> Dashboard</a>
-                <a href="/admin/hotels" class="nav-link <%= uri.contains("/admin/hotels") ? "active" : "" %>"><i
-                        class="bi bi-building"></i> Khách sạn</a>
-                <a href="/admin/rooms" class="nav-link <%= uri.contains("/admin/rooms") ? "active" : "" %>"><i
-                        class="bi bi-door-open"></i> Phòng</a>
-                <a href="/admin/bookings" class="nav-link <%= uri.contains("/admin/bookings") ? "active" : "" %>"><i
-                        class="bi bi-calendar-check"></i> Đặt phòng</a>
-                <a href="/admin/customers" class="nav-link <%= uri.contains("/admin/customers") ? "active" : "" %>"><i
-                        class="bi bi-people"></i> Khách hàng</a>
-                <a href="/admin/reviews" class="nav-link <%= uri.contains("/admin/reviews") ? "active" : "" %>"><i
-                        class="bi bi-star-fill"></i> Đánh giá</a>
-                <a href="/admin/statistics" class="nav-link <%= uri.contains("/admin/statistics") ? "active" : "" %>"><i
-                        class="bi bi-bar-chart-line"></i> Thống kê</a>
-                <a href="/logout" class="nav-link"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
-
+            <a href="/admin/homes" class="nav-link <%= uri.contains("/admin/homes") ? "active" : "" %>">
+                <i class="bi bi-speedometer2"></i> Dashboard</a>
+            <a href="/admin/hotels" class="nav-link <%= uri.contains("/admin/hotels") ? "active" : "" %>">
+                <i class="bi bi-building"></i> Khách sạn</a>
+            <a href="/admin/rooms" class="nav-link <%= uri.contains("/admin/rooms") ? "active" : "" %>">
+                <i class="bi bi-door-open"></i> Phòng</a>
+            <a href="/admin/bookings" class="nav-link <%= uri.contains("/admin/bookings") ? "active" : "" %>">
+                <i class="bi bi-calendar-check"></i> Đặt phòng</a>
+            <a href="/admin/customers" class="nav-link <%= uri.contains("/admin/customers") ? "active" : "" %>">
+                <i class="bi bi-people"></i> Khách hàng</a>
+            <a href="/admin/reviews" class="nav-link <%= uri.contains("/admin/reviews") ? "active" : "" %>">
+                <i class="bi bi-star-fill"></i> Đánh giá</a>
+            <a href="/admin/statistics" class="nav-link <%= uri.contains("/admin/statistics") ? "active" : "" %>">
+                <i class="bi bi-bar-chart-line"></i> Thống kê</a>
+            <a href="/admin/blogs" class="nav-link <%= uri.contains("/admin/blogs") ? "active" : "" %>">
+                <i class="bi bi-journal-text"></i> Quản lý Blog</a>
+            <a href="/user/logout" class="nav-link">
+                <i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <style>
             html,
@@ -69,14 +54,12 @@
                 display: flex;
                 min-height: 100vh;
                 background-color: #f4f6f9;
-                /* dịu hơn */
             }
 
             /* Sidebar */
             .sidebar {
                 width: 240px;
                 background-color: #2c3e50;
-                /* dịu hơn */
                 color: #ecf0f1;
                 flex-shrink: 0;
                 padding-top: 1rem;
@@ -91,23 +74,24 @@
 
             .nav-link {
                 color: #ecf0f1;
-                padding: 25px 20px;
+                padding: 21px 20px;
                 font-size: 15px;
                 display: flex;
                 align-items: center;
                 gap: 10px;
                 text-decoration: none;
+                transition: all 0.2s ease-in-out;
             }
 
             .nav-link:hover {
                 background-color: #34495e;
-                /* dịu hơn, rõ nét */
             }
 
             .nav-link.active {
-                background-color: #1abc9c;
-                /* xanh ngọc nổi bật */
-                color: white;
+                background-color: #20c997; /* xanh ngọc sáng hơn */
+                color: #ffffff;
+                font-weight: bold;
+                box-shadow: inset 5px 0 0 0 #ffffff33;
             }
 
             .nav-link i {

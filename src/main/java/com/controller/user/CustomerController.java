@@ -5,6 +5,9 @@ import com.entity.common.Role;
 import com.repository.CustomerRepository;
 import com.service.ForgotPasswordService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +92,21 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        Cookie cookie = new Cookie("JSESSIONID", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        return "redirect:/user/login";
+    }
+
     @GetMapping("/forgotPassword")
     public String showForgotPasswordForm() {
         return "user/forgotPassword";
@@ -106,6 +124,7 @@ public class CustomerController {
             return "user/forgotPassword";
         }
     }
+
     @PostMapping("/verifyOtp")
     public String verifyOtp(@RequestParam("email") String email,
             @RequestParam("otp") String otp,
@@ -126,6 +145,7 @@ public class CustomerController {
             return "user/enterOtp";
         }
     }
+
     @PostMapping("/resetPassword")
     public String resetPassword(@RequestParam("email") String email,
             @RequestParam("newPassword") String newPassword,
