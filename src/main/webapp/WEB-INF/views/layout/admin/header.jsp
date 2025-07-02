@@ -36,7 +36,7 @@
                 <i class="bi bi-star-fill"></i> Đánh giá</a>
             <a href="/admin/statistics" class="nav-link <%= uri.contains("/admin/statistics") ? "active" : "" %>">
                 <i class="bi bi-bar-chart-line"></i> Thống kê</a>
-            <a href="/admin/blogs" class="nav-link <%= uri.contains("/admin/blogs") ? "active" : "" %>">
+            <a href="/admin/blogsList" class="nav-link <%= uri.contains("/admin/blogs") ? "active" : "" %>">
                 <i class="bi bi-journal-text"></i> Quản lý Blog</a>
             <a href="/user/logout" class="nav-link">
                 <i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
