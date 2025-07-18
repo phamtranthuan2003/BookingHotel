@@ -3,6 +3,7 @@ package com.controller.admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 
 import java.util.List;
@@ -17,6 +18,9 @@ import com.service.CustomerService;
 @RequestMapping("/admin")
 public class CustomersController {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     @Autowired
     private CustomerService customerService;
 
@@ -71,7 +75,7 @@ public class CustomersController {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setEmail(email);
-        customer.setPassword(password);
+        customer.setPassword(passwordEncoder.encode(password));
         customer.setPhone(phone);
         customer.setAddress(address);
         customer.setRole(role);
@@ -102,6 +106,7 @@ public class CustomersController {
                                      @RequestParam String phone,
                                      @RequestParam String address,
                                      @RequestParam Long roleId,
+                                     @RequestParam(required = false) String password,
                                      Model model) {
 
         Customer customer = customerRepository.findById(id).orElse(null);
@@ -126,7 +131,9 @@ public class CustomersController {
         customer.setPhone(phone);
         customer.setAddress(address);
         customer.setRole(role);
-
+        if (password != null && !password.trim().isEmpty()) {
+            customer.setPassword(passwordEncoder.encode(password));
+        }
         customerRepository.save(customer);
         return "redirect:/admin/customers";
     }
