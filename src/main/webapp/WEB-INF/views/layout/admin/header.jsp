@@ -38,10 +38,19 @@
                 <i class="bi bi-bar-chart-line"></i> Thống kê</a>
             <a href="/admin/blogsList" class="nav-link <%= uri.contains("/admin/blogs") ? "active" : "" %>">
                 <i class="bi bi-journal-text"></i> Quản lý Blog</a>
-            <a href="/user/logout" class="nav-link">
-                <i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+            <a href="#" class="nav-link" onclick="logout()">
+                <i class="bi bi-box-arrow-right"></i> Đăng xuất
+            </a>
         </div>
+        <script>
+        function logout() {
+            // Xoá JWT token
+            localStorage.removeItem("token");
 
+            // Điều hướng về trang login
+            window.location.href = "/user/login";
+        }
+        </script>
         <style>
             html,
             body {

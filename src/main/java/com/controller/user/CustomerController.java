@@ -75,21 +75,6 @@ public class CustomerController {
         return "user/login";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-
-        Cookie cookie = new Cookie("JSESSIONID", null);
-        cookie.setPath("/");
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);
-
-        return "redirect:/user/login";
-    }
-
     @GetMapping("/forgotPassword")
     public String showForgotPasswordForm() {
         return "user/forgotPassword";

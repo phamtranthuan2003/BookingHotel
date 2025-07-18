@@ -38,13 +38,26 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         body: JSON.stringify({ email, password })
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get("Content-Type");
+    if (contentType && contentType.includes("application/json")) {
+        const data = await response.json();
 
-    if (response.ok) {
-        localStorage.setItem("token", data.token);
-        window.location.href = "/";
+        if (response.ok) {
+            // ✅ Lưu token vào localStorage
+            localStorage.setItem("token", data.token);
+
+            // ✅ Điều hướng theo role
+            if (data.role === "ROLE_ADMIN") {
+                window.location.href = "/admin/homes"; // hoặc /admin
+            } else {
+                window.location.href = "/"; // hoặc /
+            }
+        } else {
+            alert(data.error || "Đăng nhập thất bại");
+        }
     } else {
-        alert(data.error || "Đăng nhập thất bại");
+        const text = await response.text();
+        alert("Lỗi bất thường:\n" + text);
     }
 });
 </script>
