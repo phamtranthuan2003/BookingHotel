@@ -25,23 +25,15 @@
     <header class="py-3 shadow-sm">
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <!-- Logo -->
-            <a href="/user/home" class="fs-4 fw-bold text-white text-decoration-none">🏨 Hotel Booking</a>
+            <a href="/" class="fs-4 fw-bold text-white text-decoration-none">🏨 Hotel Booking</a>
 
             <!-- Navigation -->
             <nav class="d-flex flex-wrap align-items-center gap-3">
-                <a href="/user/home" class="text-white text-decoration-none fw-semibold">Trang chủ</a>
+                <a href="/" class="text-white text-decoration-none fw-semibold">Trang chủ</a>
                 <a href="/user/room" class="text-white text-decoration-none fw-semibold">Phòng</a>
                 <a href="/user/contact" class="text-white text-decoration-none fw-semibold">Liên hệ</a>
                 <a href="/user/booking" class="text-white text-decoration-none fw-semibold">Bookings</a>
-
-                <c:choose>
-                    <c:when test="${not empty sessionScope.user}">
-                        <a href="/user/logout" class="btn btn-outline-light btn-sm text-white">Đăng xuất</a>
-                    </c:when>
-                    <c:otherwise>
-                        <a href="/user/login" class="btn btn-outline-light btn-sm">Đăng nhập</a>
-                    </c:otherwise>
-                </c:choose>
+                <span id="auth-buttons"></span>
             </nav>
         </div>
     </header>
@@ -53,6 +45,31 @@
                 return new bootstrap.Dropdown(dropdownToggleEl)
             });
         });
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("token");
+        const container = document.getElementById("auth-buttons");
+
+        if (token) {
+            // Nếu đã đăng nhập → hiện nút Đăng xuất
+            container.innerHTML = `
+                <a href="#" onclick="logout()" class="btn btn-outline-light btn-sm text-white">Đăng xuất</a>
+            `;
+        } else {
+            // Nếu chưa đăng nhập → hiện nút Đăng nhập
+            container.innerHTML = `
+                <a href="/user/login" class="btn btn-outline-light btn-sm">Đăng nhập</a>
+            `;
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("token");
+        window.location.href = "/user/login";
+    }
     </script>
     <style>
         header {

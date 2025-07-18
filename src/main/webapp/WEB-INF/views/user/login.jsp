@@ -3,15 +3,10 @@
 <div class="container mt-5" style="max-width: 450px;">
     <h3 class="text-center mb-4">🔐 Đăng nhập</h3>
 
-    <!-- Hiển thị thông báo lỗi -->
-    <c:if test="${not empty error}">
-        <div class="alert alert-danger">${error}</div>
-    </c:if>
-
-    <form action="/user/login" method="post">
+    <form id="loginForm">
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required autofocus>
+            <input type="email" class="form-control" id="email" name="username" required autofocus>
         </div>
 
         <div class="mb-3">
@@ -30,3 +25,26 @@
 </div>
 </body>
 </html>
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        localStorage.setItem("token", data.token);
+        window.location.href = "/";
+    } else {
+        alert(data.error || "Đăng nhập thất bại");
+    }
+});
+</script>

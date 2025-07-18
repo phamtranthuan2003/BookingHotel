@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,9 @@ public class CustomerController {
 
     @Autowired
     private ForgotPasswordService forgotPasswordService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/signup")
     public String signup() {
@@ -54,7 +58,7 @@ public class CustomerController {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setEmail(email);
-        customer.setPassword(password);
+        customer.setPassword(passwordEncoder.encode(password));
         customer.setPhone(phone);
         customer.setAddress(address);
 
@@ -69,27 +73,6 @@ public class CustomerController {
     @GetMapping("/login")
     public String login() {
         return "user/login";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam String email,
-            @RequestParam String password,
-            HttpSession session,
-            Model model) {
-
-        Customer customer = customerRepository.findByEmail(email).orElse(null);
-        if (customer == null || !customer.getPassword().equals(password)) {
-            model.addAttribute("Error", "Sai email hoặc mật khẩu");
-            return "user/login";
-        }
-
-        session.setAttribute("user", customer);
-
-        if (customer.getRole().getName().equalsIgnoreCase("ADMIN")) {
-            return "redirect:/admin/homes";
-        } else {
-            return "redirect:/user/home";
-        }
     }
 
     @GetMapping("/logout")

@@ -9,7 +9,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.entity"})
-@ComponentScan(basePackages = "com")
 public class SpringmvcJspApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

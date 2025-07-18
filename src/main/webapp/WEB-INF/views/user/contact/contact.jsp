@@ -56,6 +56,9 @@
         </div>
         <!-- Form liên hệ -->
         <div class="col-md-7">
+            <c:if test="${not empty message}">
+                <div class="alert alert-success">${message}</div>
+            </c:if>
             <form action="/user/contact/send" method="post" class="contact-form bg-light p-4 shadow rounded">
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ và tên</label>
@@ -63,7 +66,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email liên hệ</label>
-                    <input type="email" class="form-control" id="email" name="email" required placeholder="Nhập email">
+                    <input type="email" class="form-control" id="email" name="email" required placeholder="Nhập email của bạn">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required placeholder="Nhập số điện thoại của bạn">
                 </div>
                 <div class="mb-3">
                     <label for="subject" class="form-label">Chủ đề</label>
