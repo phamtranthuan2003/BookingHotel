@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -26,10 +28,12 @@ public class Room {
     private BigDecimal price;
     private String description;
     private String status;
-    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     @JsonBackReference
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RoomImage> images = new ArrayList<>();
 }

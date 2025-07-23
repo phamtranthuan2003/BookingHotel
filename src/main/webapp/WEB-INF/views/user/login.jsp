@@ -43,14 +43,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const data = await response.json();
 
         if (response.ok) {
-            // ✅ Lưu token vào localStorage
             localStorage.setItem("token", data.token);
 
-            // ✅ Điều hướng theo role
             if (data.role === "ROLE_ADMIN") {
-                window.location.href = "/admin/homes"; // hoặc /admin
+                window.location.href = "/admin/homes";
             } else {
-                window.location.href = "/"; // hoặc /
+                window.location.href = "/";
             }
         } else {
             alert(data.error || "Đăng nhập thất bại");

@@ -97,7 +97,7 @@
             <div class="col-md-4">
                 <div class="room-card">
                     <a href="/user/roomDetail/${room.id}">
-                        <img src="${room.imageUrl}" class="room-image" />
+                        <img src="${room.images}" class="room-image" />
                     </a>
                     <div class="room-content">
                         <div class="d-flex justify-content-between">

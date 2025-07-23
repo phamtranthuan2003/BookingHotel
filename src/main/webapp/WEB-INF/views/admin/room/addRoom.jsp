@@ -26,7 +26,7 @@
                 <div class="card p-4">
                     <h3 class="mb-4 text-center text-primary">Thêm phòng mới</h3>
 
-                    <form action="/admin/addRoom" method="post">
+                    <form action="/admin/addRoom" method="post" enctype="multipart/form-data">
                         <!-- Tên phòng -->
                         <div class="mb-3">
                             <label class="form-label">Số phòng</label>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Hình ảnh</label>
-                            <input type="text" name="imageUrl" class="form-control" accept="image/*" required>
+                            <input type="file" name="images" class="form-control" accept="images/*" multiple required>
                         </div>
                         <!-- Chọn khách sạn -->
                         <div class="mb-3">

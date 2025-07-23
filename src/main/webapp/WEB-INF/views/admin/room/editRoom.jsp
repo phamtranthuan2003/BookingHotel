@@ -26,7 +26,7 @@
                 <div class="card p-4">
                     <h3 class="mb-4 text-center text-primary">Sửa phòng</h3>
 
-                    <form action="/admin/editRoom/${room.id}" method="post">
+                    <form action="/admin/editRoom/${room.id}" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label">Số phòng</label>
                             <input type="text" name="roomNumber" class="form-control" required
@@ -53,8 +53,16 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Hình ảnh</label>
-                            <input type="file" name="imageUrl" class="form-control" required value="${room.imageUrl}"
-                                accept="image/*">
+                            <input type="file" name="images" class="form-control" accept="image/*" multiple>
+
+                            <!-- Hiển thị ảnh đã lưu -->
+                            <div class="mt-2 d-flex flex-wrap gap-2">
+                                <c:forEach var="img" items="${room.images}">
+                                    <div>
+                                        <img src="${img.path}" alt="Ảnh phòng" class="img-thumbnail" style="width: 100px; height: auto;" />
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Khách sạn</label>

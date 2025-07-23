@@ -28,7 +28,7 @@
                     <th>Khách sạn</th>
                     <th>Giá (VNĐ)</th>
                     <th>Sức chứa</th>
-                    <!-- <th>Hình ảnh</th> -->
+                    <th>Hình ảnh</th>
                     <th>Trạng thái</th>
                     <th style="width: 140px;">Thao tác</th>
                 </tr>
@@ -54,7 +54,7 @@
                         </td>
 
                         <td>${room.capacity} người</td>
-                        <!-- <td>${room.imageUrl}</td> -->
+                        <td>${room.images}</td>
                         <td>
                             <c:choose>
                                 <c:when test="${room.status == 'Còn trống'}">
