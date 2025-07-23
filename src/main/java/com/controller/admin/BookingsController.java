@@ -24,9 +24,7 @@ import org.springframework.ui.Model;
 public class BookingsController {
     @Autowired
     private BookingRepository bookingRepository;
-    @Autowired
     private RoomRepository roomRepository;
-    @Autowired
     private CustomerRepository customerRepository;
 
     @GetMapping("/bookings")

@@ -44,8 +44,6 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
 
-            // ❌ Không dùng formLogin
-
             // ✅ Cấu hình logout nếu cần dùng
             .logout(logout -> logout
                 .logoutUrl("/api/user/logout")

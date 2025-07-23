@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;    
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,7 @@ public class ForgotPasswordService {
     private final CustomerRepository customerRepository;
     private final JavaMailSender mailSender;
     private final RedisTemplate<String, String> redisTemplate;
+    private final PasswordEncoder passwordEncoder;
 
     private static final long OTP_TTL = 10;
 
@@ -59,8 +61,8 @@ public class ForgotPasswordService {
     public void resetPassword(String email, String newPassword) {
         Customer customer = customerRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng."));
-
-        customer.setPassword(newPassword);
+        String encodePassword = passwordEncoder.encode(newPassword);
+        customer.setPassword(encodePassword);
         customerRepository.save(customer);
 
         redisTemplate.delete(email);
