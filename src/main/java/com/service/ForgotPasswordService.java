@@ -7,9 +7,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;    
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -27,14 +27,12 @@ public class ForgotPasswordService {
         Customer customer = customerRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Email không tồn tại"));
 
-        String otp = String.format("%06d", new Random().nextInt(1000000));
+        SecureRandom random = new SecureRandom();
+        String otp = String.format("%06d", random.nextInt(1000000));
         redisTemplate.opsForValue().set(email, otp, OTP_TTL, TimeUnit.MINUTES);
         sendEmail(email, otp);
     }
 
-    /**
-     * Gửi email chứa mã OTP
-     */
     private void sendEmail(String to, String otp) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
